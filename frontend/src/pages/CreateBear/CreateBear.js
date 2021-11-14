@@ -3,8 +3,6 @@ import { useForm } from 'react-hook-form'
 
 import { Container, Form, Roles, Role, Field, Heading, ErrorField, StyledLink } from './createBearStyle'
 
-// name, <role>
-
 const CreateBear = () => {
     const { register, handleSubmit, formState: { errors } } = useForm()
 

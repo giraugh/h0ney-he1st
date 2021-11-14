@@ -16,7 +16,7 @@ export const Heading = styled.h1`
 `
 
 export const Form = styled.form`
-    width: clamp(300px, 60vw, 30em);
+    width: clamp(300px, 50vw, 20em);
     padding: 1.5em;
     border: .2rem solid white;
     border-radius: .5rem;
@@ -56,38 +56,6 @@ export const Field = styled.div`
         margin: 0.1em;
         margin-bottom: 0.2em;
         font-family: ${p => p.theme.bodyFont};
-    }
-`
-
-export const Roles = styled.div`
-    display: grid;
-    gap: .2em;
-`
-
-export const Role = styled.div`
-    font-size: 1.1rem;
-
-    label {
-        display: block;
-        background: linear-gradient(to right, ${p => p.theme.backgroundSecondary}, transparent);
-        padding: .5em;
-    }
-
-    &.disabled {
-        color: grey;
-        text-decoration: line-through;
-        label {
-            background: linear-gradient(to right, #2c2c2c, transparent);
-        }
-    }
-
-    input[type="radio"] {
-        display: none;
-    }
-
-    input[type="radio"]:checked + label {
-        font-weight: bold;
-        background: linear-gradient(to right, ${p => p.theme.primary}, transparent);
     }
 `
 

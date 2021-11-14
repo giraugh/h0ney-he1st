@@ -16,6 +16,13 @@ const styles = {
         featureFont: 'Josefin Sans',
 
         error: '#ff7979',
+
+        glow: `0 0 calc(var(--gsize) * .2rem) #fff,
+        0 0 calc(var(--gsize) * .2rem) #fff,
+        0 0 calc(var(--gsize) * 2rem) var(--gcol),
+        0 0 calc(var(--gsize) * 0.8rem) var(--gcol),
+        0 0 calc(var(--gsize) * 2.8rem) var(--gcol),
+        inset 0 0 calc(var(--gsize) * 1.3rem) var(--gcol);`
     },
 }
 
