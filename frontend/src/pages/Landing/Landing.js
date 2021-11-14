@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
-import { Container, GlitchHeading, StyledLink } from './landingStyle'
+import { Container, GlitchHeading, StyledLink, Footer } from './landingStyle'
+
+const TEXT_DELAY = 150 // ms
 
 const Landing = () => {
 
     return <Container>
         <Heading text='H0ney He1st' className='glitch' />
         <StyledLink to='/signup'>Get Started</StyledLink>
+        <Footer>Created by <Link to='http://ewanb.me'>Ew4n Br3akey</Link>
+        {' and ' }<Link to='maxwellreid.tech'>Maxw3ll Re1d</Link></Footer>
     </Container>
 }
 
@@ -16,7 +21,7 @@ const Heading = ({ text, ...rest }) => {
     useEffect(() => {
         const timer = setInterval(() => {
             setChar(char + 1)
-        }, 100)
+        }, TEXT_DELAY)
         return () => clearInterval(timer)
     })
 

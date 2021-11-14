@@ -18,6 +18,20 @@ export const StyledLink = styled(Link)`
     animation: ${pulsateGlow} .7s infinite linear alternate-reverse;
 `
 
+export const Footer = styled.footer`
+    width: 100%;
+    min-height: 1.5em;
+    padding: 0.2em;
+    padding-left: 2em;
+    position: absolute;
+    top: calc(100vh - 1.8em);
+    color: grey;
+
+    a {
+        color: #8f8f8f;
+    }
+`
+
 export const Container = styled.div`
     width: 100%;
     height: 100%;
