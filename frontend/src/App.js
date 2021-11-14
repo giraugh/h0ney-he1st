@@ -1,14 +1,22 @@
 import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { ThemeProvider } from 'styled-components'
 
+import styles, { GlobalStyles } from 'styles'
 import { CreateBearPage, MainPage, LoginPage } from 'pages'
 
+const STYLE_SCHEME = 'dark'
+
 const App = () =>
-  <BrowserRouter>
-    <Routes>
-      <Route exact path='/' element={<CreateBearPage />}/>
-      <Route exact path='/game' element={<MainPage />}/>
-      <Route exact path='/login' element={<LoginPage />}/>
-    </Routes>
-  </BrowserRouter>
+  <ThemeProvider theme={{...styles, ...styles[STYLE_SCHEME]}}>
+    <GlobalStyles />
+    <BrowserRouter>
+      <Routes>
+        <Route exact path='/' element={<CreateBearPage />}/>
+        <Route exact path='/game' element={<MainPage />}/>
+        <Route exact path='/login' element={<LoginPage />}/>
+      </Routes>
+    </BrowserRouter>
+  </ThemeProvider>
+
 export default App
