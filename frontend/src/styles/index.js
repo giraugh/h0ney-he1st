@@ -4,6 +4,7 @@ const styles = {
 
         background: '#222222',
         backgroundSecondary: '#424242',
+        backgroundSecondaryLight: '#585858',
 
         text: '#EEEEEE',
         greyText: '#BBBBBB',

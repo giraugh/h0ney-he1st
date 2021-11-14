@@ -71,6 +71,11 @@ export const Role = styled.div`
         display: block;
         background: linear-gradient(to right, ${p => p.theme.backgroundSecondary}, transparent);
         padding: .5em;
+
+        &:hover {
+            background: linear-gradient(to right, ${p => p.theme.backgroundSecondaryLight}, transparent);
+            cursor: pointer;
+        }
     }
 
     &.disabled {
@@ -78,6 +83,7 @@ export const Role = styled.div`
         text-decoration: line-through;
         label {
             background: linear-gradient(to right, #2c2c2c, transparent);
+            cursor: default;
         }
     }
 
