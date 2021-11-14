@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 
 import { Container, GlitchHeading, StyledLink, Footer } from './landingStyle'
 
@@ -10,8 +9,12 @@ const Landing = () => {
     return <Container>
         <Heading text='H0ney He1st' className='glitch' />
         <StyledLink to='/signup'>Get Started</StyledLink>
-        <Footer>Created by <Link to='http://ewanb.me'>Ew4n Br3akey</Link>
-        {' and ' }<Link to='maxwellreid.tech'>Maxw3ll Re1d</Link></Footer>
+        <Footer>
+            {'Created by '}
+            <a href='https://ewanb.me' target='_blank'>Ew4n Br3akey</a>
+            {' and ' }
+            <a href='https://maxwellreid.tech' target='_blank'>Maxw3ll Re1d</a>
+        </Footer>
     </Container>
 }
 
