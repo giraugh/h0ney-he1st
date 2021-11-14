@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 
 import styles, { GlobalStyles } from 'styles'
-import { CreateBearPage, MainPage, LoginPage } from 'pages'
+import { LandingPage, CreateBearPage, MainPage, LoginPage } from 'pages'
 
 const STYLE_SCHEME = 'dark'
 
@@ -12,7 +12,8 @@ const App = () =>
     <GlobalStyles />
     <BrowserRouter>
       <Routes>
-        <Route exact path='/' element={<CreateBearPage />}/>
+        <Route exact path='/' element={<LandingPage />}/>
+        <Route exact path='/signup' element={<CreateBearPage />}/>
         <Route exact path='/game' element={<MainPage />}/>
         <Route exact path='/login' element={<LoginPage />}/>
       </Routes>
