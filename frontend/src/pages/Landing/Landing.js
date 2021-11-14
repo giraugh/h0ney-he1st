@@ -11,9 +11,9 @@ const Landing = () => {
         <StyledLink to='/signup'>Get Started</StyledLink>
         <Footer>
             {'Created by '}
-            <a href='https://ewanb.me' target='_blank'>Ew4n Br3akey</a>
+            <a href='https://ewanb.me' target='_blank' rel='noreferrer'>Ew4n Br3akey</a>
             {' and ' }
-            <a href='https://maxwellreid.tech' target='_blank'>Maxw3ll Re1d</a>
+            <a href='https://maxwellreid.tech' target='_blank' rel='noreferrer'>Maxw3ll Re1d</a>
         </Footer>
     </Container>
 }
