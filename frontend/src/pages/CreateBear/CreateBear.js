@@ -21,7 +21,7 @@ const CreateBear = () => {
     }
 
     return <Container>
-        <Heading> Create a Bear </Heading>
+        <Heading>Create a Bear</Heading>
         <Form onSubmit={handleSubmit(onSubmit)}>
             <Field>
                 <label htmlFor='name'>Name</label>

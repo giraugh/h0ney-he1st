@@ -11,7 +11,7 @@ const Login = () => {
     }
 
     return <Container>
-        <Heading> Bear Login </Heading>
+        <Heading>Bear Login</Heading>
         <Form onSubmit={handleSubmit(onSubmit)}>
             <Field>
                 <label htmlFor='name'>Name</label>
