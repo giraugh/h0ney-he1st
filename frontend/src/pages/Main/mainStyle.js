@@ -9,6 +9,8 @@ export const Container = styled.div`
     width: 100%;
     padding: .5em;
     gap: .5em;
+    max-width: 150vh;
+    margin: 0 auto;
 `
 
 export const SubtleText = styled.span`
