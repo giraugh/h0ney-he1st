@@ -1,6 +1,7 @@
 const styles = {
     dark: {
         primary: '#19aaeb',
+        primaryLight: '#93d5f3',
 
         background: '#222222',
         backgroundSecondary: '#424242',

@@ -13,6 +13,7 @@ const GlobalStyles = createGlobalStyle`
 
     body, #root {
         min-height: 100vh;
+        --vh: ${window.innerHeight / 100}px;
     }
 
     #root {
@@ -28,5 +29,11 @@ const GlobalStyles = createGlobalStyle`
         color: ${p => p.theme.primary};
     }
 `
+
+// Custom vh units
+window.addEventListener('resize', () => { 
+    document.querySelector('#root').style
+      .setProperty('--vh', `${window.innerHeight/100}px`);
+  })
 
 export default GlobalStyles
