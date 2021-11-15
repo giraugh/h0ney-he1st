@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
+import { useCookieState } from 'use-cookie-state' 
 
-import { Container, SkillBox, SkillSliderContainer, SummaryContainer, SubtleText, HighlightText } from './mainStyle'
+import { Container, SkillBox, SkillSliderContainer, SummaryContainer, SubtleText, HighlightText, NotesArea, NotesContainer } from './mainStyle'
 
 const VALUE_COUNT = 7
 
@@ -21,6 +22,7 @@ const Main = () => {
         <SummaryBox bear={bear}/>
         <SkillSlider value={value} setValue={setValue}/>
         <ActionBox bear={bear} bearMode={value === 0} thiefMode={value === VALUE_COUNT - 1}/>
+        <NotesBox />
     </Container>
 }
 
@@ -76,6 +78,18 @@ const SkillSlider = ({ value, setValue }) => {
             </SkillBox>
         )}
     </SkillSliderContainer>
+}
+
+const NotesBox = () => {
+    const [notes, setNotes] = useCookieState('honey-heist-notes', '')
+
+    return <NotesContainer>
+        <NotesArea
+            placeholder='You can write your own notes here!'
+            value={notes}
+            onChange={e => setNotes(e.target.value)}>
+            </NotesArea>
+    </NotesContainer>
 }
 
 export default Main

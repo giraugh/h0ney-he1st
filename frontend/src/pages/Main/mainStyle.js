@@ -108,3 +108,35 @@ export const SkillBox = styled.div`
         align-items: center;
     }
 `
+
+export const NotesContainer = styled.div`
+    display: flex;
+    gap: .1em;
+    height: 6.5em;
+    background: ${p => p.theme.backgroundSecondary};
+    font-family: ${p => p.theme.featureFont};
+    font-size: 2.5rem;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+`
+
+export const NotesArea = styled.textarea`
+    display: block;
+    width: 100%;
+    height: 100%;
+    resize: none;
+    padding: .8em;
+    border-radius: .2rem;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    background: ${p => p.theme.backgroundSecondaryLight};
+    color: white;
+
+    ::placeholder {
+        color: #a1a1a1;
+    }
+`
