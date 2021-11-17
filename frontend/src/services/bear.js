@@ -1,15 +1,16 @@
-export const fetchRoles = async code => {
+import api from './'
 
+export const fetchRoles = async gamecode => {
+  const { data } = await api.get('/roles', { params: { gamecode } })
+  return data
 }
 
-export const fetchBears = async code => {
-
+export const createBear = async ({ gamecode, name, role }) => {
+  const { data } = await api.get('/signup', { params: { gamecode, name, role } })
+  return data
 }
 
-export const createBear = async ({ code, name, role }) => {
-
-}
-
-export const removeBear = async ({ gameCode, name }) => {
-
+export const removeAllBears = async ({ gamecode }) => {
+  const { data } = await api.get('/resetGame', { params: { gamecode } }).data
+  return data
 }

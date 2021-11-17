@@ -1,22 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
+import { fetchRoles, createBear } from 'services/bear'
+
 import { Container, Form, Roles, Role, Field, Heading, ErrorField, StyledLink } from './createBearStyle'
 
-// TODO: use API
-const fetchRoles = async () => {
-    await new Promise((a, r) => setTimeout(a, 500))
-    return [
-        { name: 'muscle', enabled: true },
-        { name: 'brains', enabled: true },
-        { name: 'driver', enabled: true },
-        { name: 'hacker', enabled: false },
-        { name: 'thief', enabled: true },
-        { name: 'face', enabled: true },
-    ].map(x => Math.random() < .5 ? x : null).filter(x => x)
-}
-
 const CreateBear = () => {
+    const [errorMessage, setErrorMessage] = useState()
     const [roles, setRoles] = useState()
     const [isLoadingRoles, setIsLoadingRoles] = useState(false)
     const { register, handleSubmit, watch, formState: { errors } } = useForm()
@@ -32,8 +22,11 @@ const CreateBear = () => {
         }
     }, [watchCode])
 
-    const onSubmit = () => {
-        console.log('submitted!')
+    const onSubmit = ({ code, name, role }) => {
+        setErrorMessage('')
+        createBear({ gamecode: code, name, role })
+            .then(bear => console.log(bear))
+            .catch(err => setErrorMessage(err.response.data.error))
     }
 
     return <Container>
@@ -56,14 +49,16 @@ const CreateBear = () => {
                 <label>Role</label>
                 <p>How will your bear assist the party?</p>
                 <Roles>
-                    {isLoadingRoles ? <span> Loading Roles... </span>: roles.map(({ name, enabled }, i) => <Role key={name} className={enabled ? 'enabled' : 'disabled'}>
-                        <input type='radio' name='role' value={i} id={`role-${i}`} disabled={!enabled} {...register('role', { required: true })} />
+                    {isLoadingRoles ? <span> Loading Roles... </span>: roles.map(({ name, available }, i) => <Role key={name} className={available ? 'enabled' : 'disabled'}>
+                        <input type='radio' name='role' value={name} id={`role-${i}`} disabled={!available} {...register('role', { required: true })} />
                         <label htmlFor={`role-${i}`}>{name}</label>
                     </Role>)}
                 </Roles>
                 <ErrorField>{errors.role && <span>Make sure to choose a role!</span>}</ErrorField>
             </Field>}
 
+
+            {errorMessage && <ErrorField>{errorMessage}</ErrorField>}
             <input type='submit' value='Create Bear' />
             <StyledLink to='/login'>I already have a bear!</StyledLink>
         </Form>
