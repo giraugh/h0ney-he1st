@@ -17,6 +17,7 @@ const App = () =>
         <Route exact path='/game' element={<MainPage />}/>
         <Route exact path='/login' element={<LoginPage />}/>
         <Route path='/*' element={<NotFoundPage />}/>
+        {/* Use Navigate component? */}
       </Routes>
     </BrowserRouter>
   </ThemeProvider>
