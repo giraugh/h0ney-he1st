@@ -33,7 +33,7 @@ const GlobalStyles = createGlobalStyle`
 // Custom vh units
 window.addEventListener('resize', () => { 
     document.querySelector('#root').style
-      .setProperty('--vh', `${window.innerHeight/100}px`);
-  })
+        .setProperty('--vh', `${window.innerHeight/100}px`)
+})
 
 export default GlobalStyles

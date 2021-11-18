@@ -21,7 +21,7 @@ const Login = () => {
             </Field>
 
             <input type='submit' value='Login' />
-            <StyledLink to='/signup'>I don't have a bear yet!</StyledLink>
+            <StyledLink to='/signup'>I don&apos;t have a bear yet!</StyledLink>
         </Form>
     </Container>
 }

@@ -30,7 +30,7 @@ const SummaryBox = ({ bear }) => {
     return <SummaryContainer>
         <HighlightText><div>The {bear.role}</div></HighlightText>
         <div><SubtleText>is</SubtleText></div>
-        <div>"{bear.name}"</div>
+        <div>{`"${bear.name}"`}</div>
         <div>{bear.descriptor} {bear.species}</div>
     </SummaryContainer>
 }
@@ -39,10 +39,10 @@ const ActionBox = ({ bear, bearMode, thiefMode }) => {
     return <>
         {bearMode && <SummaryContainer className={'small warning'}>
             <div>You have gone wild!</div>
-            <div>You can't speak English</div>
+            <div>You can&apos;t speak English</div>
         </SummaryContainer>}
         {thiefMode && <SummaryContainer className={'small warning'}>
-            <div>You're criminally mad!</div>
+            <div>You&apos;re criminally mad!</div>
             <div>Betray the party!</div>
             <div><SubtleText>(In a small way)</SubtleText></div>
         </SummaryContainer>}
@@ -52,7 +52,7 @@ const ActionBox = ({ bear, bearMode, thiefMode }) => {
         </SummaryContainer>
         <SummaryContainer className={'small'}>
             <div>As the {bear.role},</div>
-            <div>You're skilled at <HighlightText>{bear.roleAdvantage}</HighlightText></div>
+            <div>You&apos;re skilled at <HighlightText>{bear.roleAdvantage}</HighlightText></div>
         </SummaryContainer>
     </>
 }
@@ -66,15 +66,15 @@ const SkillSlider = ({ value, setValue }) => {
             <SkillBox
                 key={i}
                 data-index={i}
-                onClick={e => setValue(i)}
+                onClick={() => setValue(i)}
                 className={`${i === VALUE_COUNT - 1 ? 'end' : ''} ${i === 0 ? 'start' : ''} ${i === value ? 'active' : ''}`}>
-                    {i % (VALUE_COUNT - 1) === 0 && <span>
-                        {i === 0 ? bearValue : criminalValue}
-                    </span>} 
-                    {false && value === i && i % (VALUE_COUNT-1) !== 0 && <span>
+                {i % (VALUE_COUNT - 1) === 0 && <span>
+                    {i === 0 ? bearValue : criminalValue}
+                </span>} 
+                {false && value === i && i % (VALUE_COUNT-1) !== 0 && <span>
                         B{bearValue}
                         C{criminalValue}
-                    </span>}
+                </span>}
             </SkillBox>
         )}
     </SkillSliderContainer>
@@ -88,7 +88,7 @@ const NotesBox = () => {
             placeholder='You can write your own notes here!'
             value={notes}
             onChange={e => setNotes(e.target.value)}>
-            </NotesArea>
+        </NotesArea>
     </NotesContainer>
 }
 
