@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { HashRouter, Route, Routes } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 
 import styles, { GlobalStyles } from 'styles'
@@ -10,7 +10,7 @@ const STYLE_SCHEME = 'dark'
 const App = () =>
   <ThemeProvider theme={{...styles, ...styles[STYLE_SCHEME]}}>
     <GlobalStyles />
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route exact path='/' element={<LandingPage />}/>
         <Route exact path='/signup' element={<CreateBearPage />}/>
@@ -19,7 +19,7 @@ const App = () =>
         <Route path='/*' element={<NotFoundPage />}/>
         {/* Use Navigate component? */}
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   </ThemeProvider>
 
 export default App
