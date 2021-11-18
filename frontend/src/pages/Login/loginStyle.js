@@ -41,7 +41,7 @@ export const Field = styled.div`
     flex-direction: column;
     margin-bottom: 1em;
 
-    input[type="text"] {
+    input[type="text"], input[type="number"] {
         padding: .4em;
     }
 

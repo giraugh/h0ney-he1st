@@ -42,6 +42,11 @@ export const SummaryContainer = styled.div`
         padding: 1.5em 0em;
     }
 
+    &.subtle {
+      background: ${p => p.theme.backgroundSecondary};
+      opacity: 60%;
+    }
+
     &.warning {
         background: radial-gradient(#af4242 1%,#6a2626 80%);
         span {
@@ -139,4 +144,24 @@ export const NotesArea = styled.textarea`
     ::placeholder {
         color: #a1a1a1;
     }
+`
+
+export const Button = styled.button`
+  background: ${p => p.theme.backgroundSecondaryLight};
+  font-family: ${p => p.theme.featureFont};
+  width: 40%;
+  padding: 0.5em 0em;
+  font-size: 1.2em;
+  border: none;
+  color: white; 
+  cursor: pointer;
+
+  &:hover {
+    background: #767676;
+  }
+
+  &:active {
+    background: white;
+    color: ${p => p.theme.backgroundSecondaryLight};
+  }
 `
