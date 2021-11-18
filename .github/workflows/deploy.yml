@@ -9,6 +9,7 @@ jobs:
     env:
       CI: false
       REACT_APP_API_URL: "https://13.211.33.13:8080/"
+      PUBLIC_URL: "/h0ney-he1st"
     defaults:
       run:
         working-directory: frontend
