@@ -26,9 +26,9 @@ const CreateBear = () => {
     }
   }, [watchCode])
 
-  const onSubmit = ({ gamecode, name, role }) => {
+  const onSubmit = ({ gamecode, bear_name, player_name, role }) => {
     setErrorMessage('')
-    createBear({ gamecode, name, role })
+    createBear({ gamecode, player_name, bear_name, role })
       .then(bear => setCurrentBear({ gamecode, bear }))
       .then(() => navigate('/game'))
       .catch(err => setErrorMessage(err.response.data.error))
@@ -38,10 +38,16 @@ const CreateBear = () => {
     <Heading>Create a Bear</Heading>
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Field>
-        <label htmlFor='name'>Name</label>
+        <label htmlFor='player_name'>Player Name</label>
+        <p>Whats your name? For other players to identify you by.</p>
+        <input placeholder='Player McPlayer' type='text' name='player_name' {...register('player_name', { required: true })} />
+        <ErrorField>{errors.player_name && <span>You have to provide a name!</span>}</ErrorField>
+      </Field>
+      <Field>
+        <label htmlFor='bear_name'>Name</label>
         <p>Give your bear a cool name!</p>
-        <input placeholder='Bear McSmith' type='text' name='name' {...register('name', { required: true })} />
-        <ErrorField>{errors.name && <span>You have to name your bear!</span>}</ErrorField>
+        <input placeholder='Bear McSmith' type='text' name='bear_name' {...register('bear_name', { required: true })} />
+        <ErrorField>{errors.bear_name && <span>You have to name your bear!</span>}</ErrorField>
       </Field>
       <Field>
         <label htmlFor='gamecode'>Game Code</label>

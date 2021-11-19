@@ -5,13 +5,13 @@ export const fetchRoles = async gamecode => {
   return data
 }
 
-export const createBear = async ({ gamecode, name, role }) => {
-  const { data } = await api.get('/signup', { params: { gamecode, name, role } })
+export const createBear = async ({ gamecode, bear_name, player_name, role }) => {
+  const { data } = await api.get('/signup', { params: { gamecode, bear_name, player_name, role } })
   return data
 }
 
-export const fetchBear = async ({ gamecode, name }) => {
-  const { data } = await api.get('/login', { params: { gamecode, name } })
+export const fetchBear = async ({ gamecode, bear_name }) => {
+  const { data } = await api.get('/login', { params: { gamecode, bear_name } })
   return data
 }
 

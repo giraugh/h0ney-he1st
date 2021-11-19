@@ -34,7 +34,7 @@ const SummaryBox = ({ bear }) => {
   return <SummaryContainer>
     <div>The <HighlightText>{bear?.role}</HighlightText></div>
     <div><SubtleText>is</SubtleText></div>
-    <div>{`"${bear?.name}"`}</div>
+    <div>{`"${bear?.bear_name}"`}</div>
     <div>{bear?.descriptor} {bear?.species}</div>
   </SummaryContainer>
 }
@@ -85,7 +85,7 @@ const SkillSlider = ({ value, setValue }) => {
 }
 
 const NotesBox = ({ bear }) => {
-  const [notes, setNotes] = useCookieState(`honey-heist-notes-${bear?.name}-${bear?.gamecode}`, '')
+  const [notes, setNotes] = useCookieState(`honey-heist-notes-${bear?.bear_name}-${bear?.gamecode}`, '')
 
   return <NotesContainer>
     <NotesArea

@@ -10,13 +10,13 @@ const useCurrentBear = () => {
 
   useEffect(() => {
     if (bearName && gamecode) {
-      fetchBear({ name: bearName, gamecode })
+      fetchBear({ bear_name: bearName, gamecode })
         .then(bear => setBear(bear))
     }
   }, [bearName])
 
   const setCurrentBear = ({ gamecode, bear }) => {
-    setBearName(bear?.name)
+    setBearName(bear?.bear_name)
     setGamecode(gamecode)
   }
 

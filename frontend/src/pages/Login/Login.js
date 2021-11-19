@@ -12,8 +12,8 @@ const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm()
   const navigate = useNavigate()
 
-  const onSubmit = ({ gamecode, name }) => {
-    fetchBear({ gamecode, name })
+  const onSubmit = ({ gamecode, bear_name }) => {
+    fetchBear({ gamecode, bear_name })
       .then(bear => setCurrentBear({ gamecode, bear }))
       .then(() => navigate('/game'))
       .catch(err => setErrorMessage(err.response.data.error))
@@ -23,10 +23,10 @@ const Login = () => {
     <Heading>Bear Login</Heading>
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Field>
-        <label htmlFor='name'>Name</label>
+        <label htmlFor='bear_name'>Name</label>
         <p>Whats the name of your existing bear?</p>
-        <input placeholder='Bear McSmith' type='text' name='name' {...register('name', { required: true })} />
-        <ErrorField>{errors.name && <span>You have to provide a name!</span>}</ErrorField>
+        <input placeholder='Bear McSmith' type='text' name='bear_name' {...register('bear_name', { required: true })} />
+        <ErrorField>{errors.bear_name && <span>You have to provide a name!</span>}</ErrorField>
       </Field>
 
       <Field>
