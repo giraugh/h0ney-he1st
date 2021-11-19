@@ -22,8 +22,21 @@ def get_game_traits(gamecode, trait_key):
 
 
 def hydrate_player(player):
-  player['ability'] = traits['species'][player['species']]
-  player['role_advantage'] = traits['role'][player['role']]
+  # get fields
+  species = player['species']
+  role = player['role']
+
+  # add fields
+  if species in traits['species'].keys():
+      player['ability'] = traits['species'][species]
+  else:
+      player['ability'] = '???'
+  
+  if role in traits['role'].keys():
+      player['role_advantage'] = traits['role'][role]
+  else:
+      player['role_advantage'] = '???'
+
   return player
     
 
