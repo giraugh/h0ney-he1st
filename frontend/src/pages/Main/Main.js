@@ -99,7 +99,7 @@ const NotesBox = ({ bear }) => {
 }
 
 const PartyBox = ({ bear }) => {
-  const [title] = useState(['Party', 'Gang', 'Sleuth', 'Team'][Math.random()*4|0])
+  const [title] = useState(['Party', 'Gang', 'Sleuth', 'Team', 'Crew'][Math.random()*5|0])
   const [bears, setBears] = useState([])
 
   // Get players

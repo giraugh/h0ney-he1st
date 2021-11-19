@@ -14,18 +14,24 @@ bear_descriptors = {
 bear_roles = {
   'Muscle': 'Flexing',
   'Driver': 'Driving',
-  'Cub Scout': 'Navigating',
+  'Cub Scout': 'Being Prepared',
   'Thief': 'Theft',
-  'Builder': 'Construction',
-  'Brains': 'Analysis',
+  'Engineer': 'Construction',
+  'Mastermind': 'Analysis',
   'Freerunner': 'Acrobatics',
+  'Hacker': 'Hacking',
+  'Face': 'Conversation',
+  'Musician': 'Music',
+  'Magician': 'Magic',
+  'Tailor': 'Disguise',
+  'Navigator': 'Navigating'
 }
 
 # as a <key> you can use <value>
 bear_species = {
   'Grizzly Bear': 'Terrify',
   'Polar Bear': 'Swim',
-  'Panda': 'Charm',
+  'Panda Bear': 'Charm',
   'Black Bear': 'Climb',
   'Sun Bear': 'Sense Honey',
   'Honey Badger': 'Carnage',
@@ -33,6 +39,9 @@ bear_species = {
   'Spectacled Bear': 'Enhanced Sight',
   'Brown Bear': 'Fish',
   'Beaver': 'Gnaw',
+  'Wolverine Bear': 'Run',
+  'Pizzly Bear': 'Jump',
+  'Teddy Bear': 'Cuddle'
 }
 
 traits = {
