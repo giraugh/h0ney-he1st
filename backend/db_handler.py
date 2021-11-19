@@ -18,7 +18,7 @@ def add_player(bear_name, player_name, gamecode, descriptor, species, role):
   table = dynamodb.Table('Player')
   response = table.put_item(
     Item={
-      'bear_name': bear_name
+      'bear_name': bear_name,
       'player_name': player_name,
       'gamecode': gamecode,
       'descriptor': descriptor,

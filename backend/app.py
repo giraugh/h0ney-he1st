@@ -25,6 +25,7 @@ def hydrate_player(player):
   player['role_advantage'] = traits['role'][player['role']]
   return player
 
+
 """
 App Routes
 """
@@ -33,12 +34,20 @@ App Routes
 def root():
   return "H0ney He1st API"
 
+
 @app.route("/login")
 def login():
-  # Get player from DB
+  # Get params
   bear_name = request.args.get('bear_name')
   gamecode = request.args.get('gamecode')
+
+  # Validate params
+  if not all([bear_name, gamecode]):
+      return jsonify({ 'err': 3, 'error': 'Missing param' }), 400
+
+  # Get player
   player = get_player_in_game(bear_name, gamecode)
+
 
   # Check if player exists
   if not player:
@@ -53,7 +62,14 @@ def login():
 @app.route('/roles')
 def roles():
   gamecode = request.args.get('gamecode')
+
+  # Validate params
+  if not gamecode:
+      return jsonify({ 'err': 3, 'error': 'Missing param' }), 400
+
+  # Get roles
   roles = get_game_traits(gamecode, 'role')
+
   return jsonify(roles)
 
 
@@ -64,6 +80,11 @@ def signup():
   gamecode = request.args.get('gamecode')
   role = request.args.get('role')
 
+  # Validate params
+  if not all([bear_name, gamecode, player_name, role]):
+      return jsonify({ 'err': 3, 'error': 'Missing param' }), 400
+
+  # Check if name is taken
   if get_player_in_game(bear_name, gamecode):
     return jsonify({ 'err': 2, 'error': 'Name is taken' }), 400
   
@@ -77,6 +98,7 @@ def signup():
   # Add player to database
   add_player(bear_name, player_name, gamecode, descriptor, species, role)
 
+  # Get, hydrate and return player
   player = get_player_in_game(bear_name, gamecode)
   player = hydrate_player(player)
   return jsonify(player)
@@ -84,4 +106,9 @@ def signup():
 
 @app.route('/resetGame')
 def reset_game(gamecode):
+  # Validate params
+  if not gamecode:
+      return jsonify({ 'err': 3, 'error': 'Missing param' }), 400
+
+  # Delete players
   delete_all_players_in_game(gamecode)
