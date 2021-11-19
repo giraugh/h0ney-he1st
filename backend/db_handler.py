@@ -14,12 +14,12 @@ dynamodb = boto3.resource(
   region_name           = REGION_NAME,
 )
 
-def add_player(name, gamecode, descriptor, species, role):
+def add_player(bear_name, player_name, gamecode, descriptor, species, role):
   table = dynamodb.Table('Player')
-  print(name, gamecode, descriptor, species, role)
   response = table.put_item(
     Item={
-      'name': name,
+      'bear_name': bear_name
+      'player_name': player_name,
       'gamecode': gamecode,
       'descriptor': descriptor,
       'species': species,
@@ -28,10 +28,10 @@ def add_player(name, gamecode, descriptor, species, role):
   )
   return response
 
-def get_player_in_game(name, gamecode):
+def get_player_in_game(bear_name, gamecode):
   table = dynamodb.Table('Player')
   response = table.query(
-    KeyConditionExpression=Key('name').eq(name)
+    KeyConditionExpression=Key('bear_name').eq(bear_name)
   )
   return next((r for r in response['Items'] if r['gamecode'] == gamecode), None)
 
@@ -46,7 +46,3 @@ def delete_all_players_in_game(gamecode):
     KeyConditionExpression=Key('gamecode').eq(gamecode)
   )
   return response['Items']
-
-if __name__ == '__main__':
-    table = create_player_table()
-    print("Table status:", table.table_status)

@@ -36,9 +36,9 @@ def root():
 @app.route("/login")
 def login():
   # Get player from DB
-  name = request.args.get('name')
+  bear_name = request.args.get('bear_name')
   gamecode = request.args.get('gamecode')
-  player = get_player_in_game(name, gamecode)
+  player = get_player_in_game(bear_name, gamecode)
 
   # Check if player exists
   if not player:
@@ -59,24 +59,25 @@ def roles():
 
 @app.route("/signup")
 def signup():
-  name = request.args.get('name')
+  bear_name = request.args.get('bear_name')
+  player_name = request.args.get('player_name')
   gamecode = request.args.get('gamecode')
   role = request.args.get('role')
 
-  if get_player_in_game(name, gamecode):
+  if get_player_in_game(bear_name, gamecode):
     return jsonify({ 'err': 2, 'error': 'Name is taken' }), 400
   
   # Get available traits
   available_descriptors = [t for t in get_game_traits(gamecode, 'descriptor') if t['available']]
   available_species = [t for t in get_game_traits(gamecode, 'species') if t['available']]
-  
+
   # Choose random available traits
   descriptor, species = random.choice(available_descriptors)['name'], random.choice(available_species)['name']
   
   # Add player to database
-  add_player(name, gamecode, descriptor, species, role)
+  add_player(bear_name, player_name, gamecode, descriptor, species, role)
 
-  player = get_player_in_game(name, gamecode)
+  player = get_player_in_game(bear_name, gamecode)
   player = hydrate_player(player)
   return jsonify(player)
 
