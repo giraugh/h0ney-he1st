@@ -8,6 +8,7 @@ import random
 app = Flask(__name__)
 CORS(app)
 
+
 """
 Utils
 """
@@ -24,7 +25,16 @@ def hydrate_player(player):
   player['ability'] = traits['species'][player['species']]
   player['role_advantage'] = traits['role'][player['role']]
   return player
+    
 
+def expect_params(*param_names):
+    params = [request.args.get(param_name) for param_name in param_names]
+    if not all(params):
+        missing_params = [name for name, val in zip(param_names, params) if not val]
+        return { 'err': 3, 'error': f'Missing params: {", ".join(missing_params)}' }, None
+    else:
+        return None, *params
+        
 
 """
 App Routes
@@ -38,16 +48,12 @@ def root():
 @app.route("/login")
 def login():
   # Get params
-  bear_name = request.args.get('bear_name')
-  gamecode = request.args.get('gamecode')
-
-  # Validate params
-  if not all([bear_name, gamecode]):
-      return jsonify({ 'err': 3, 'error': 'Missing param' }), 400
+  err, bear_name, gamecode = expect_params('bear_name', 'gamecode')
+  if err:
+      return err, 400
 
   # Get player
   player = get_player_in_game(bear_name, gamecode)
-
 
   # Check if player exists
   if not player:
@@ -61,11 +67,9 @@ def login():
 
 @app.route('/roles')
 def roles():
-  gamecode = request.args.get('gamecode')
-
-  # Validate params
-  if not gamecode:
-      return jsonify({ 'err': 3, 'error': 'Missing param' }), 400
+  err, gamecode = expect_params('gamecode')
+  if err:
+      return err, 400
 
   # Get roles
   roles = get_game_traits(gamecode, 'role')
@@ -73,16 +77,23 @@ def roles():
   return jsonify(roles)
 
 
+@app.route('/players')
+def players():
+  err, gamecode = expect_params('gamecode')
+  if err:
+      return err, 400
+
+  # Get roles
+  players = [hydrate_player(p) for p in get_all_players_in_game(gamecode)]
+
+  return jsonify(players)
+
+
 @app.route("/signup")
 def signup():
-  bear_name = request.args.get('bear_name')
-  player_name = request.args.get('player_name')
-  gamecode = request.args.get('gamecode')
-  role = request.args.get('role')
-
-  # Validate params
-  if not all([bear_name, gamecode, player_name, role]):
-      return jsonify({ 'err': 3, 'error': 'Missing param' }), 400
+  err, bear_name, player_name, gamecode, role = expect_params('bear_name', 'player_name', 'gamecode', 'role')
+  if err:
+      return err, 400
 
   # Check if name is taken
   if get_player_in_game(bear_name, gamecode):
@@ -105,10 +116,10 @@ def signup():
 
 
 @app.route('/resetGame')
-def reset_game(gamecode):
-  # Validate params
-  if not gamecode:
-      return jsonify({ 'err': 3, 'error': 'Missing param' }), 400
+def reset_game():
+  err, gamecode = expect_params('gamecode')
+  if err:
+      return err, 400
 
   # Delete players
   delete_all_players_in_game(gamecode)

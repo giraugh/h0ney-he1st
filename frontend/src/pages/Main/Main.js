@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useCookieState } from 'use-cookie-state' 
 import { useNavigate } from 'react-router-dom'
 
-import { Button, Container, SkillBox, SkillSliderContainer, SummaryContainer, SubtleText, HighlightText, NotesArea, NotesContainer } from './mainStyle'
+import { PartyTable, PartyBoxContainer, Button, Container, SkillBox, SkillSliderContainer, Box, SubtleText, HighlightText, NotesArea, NotesContainer } from './mainStyle'
 import { useCurrentBear } from 'hooks'
+import { fetchAllBears } from 'services/bear'
 
 const VALUE_COUNT = 7
 
@@ -24,40 +25,41 @@ const Main = () => {
     <SkillSlider value={value} setValue={setValue}/>
     <ActionBox bear={currentBear} bearMode={value === 0} thiefMode={value === VALUE_COUNT - 1}/>
     <NotesBox bear={currentBear} />
-    <SummaryContainer className="small subtle">
+    <PartyBox bear={currentBear} />
+    <Box className="small subtle">
       <Button onClick={changeBear}>Change Bear</Button>
-    </SummaryContainer>
+    </Box>
   </Container>
 }
 
 const SummaryBox = ({ bear }) => {
-  return <SummaryContainer>
+  return <Box>
     <div>The <HighlightText>{bear?.role}</HighlightText></div>
     <div><SubtleText>is</SubtleText></div>
     <div>{`"${bear?.bear_name}"`}</div>
     <div>{bear?.descriptor} {bear?.species}</div>
-  </SummaryContainer>
+  </Box>
 }
 
 const ActionBox = ({ bear, bearMode, thiefMode }) => {
   return <>
-    {bearMode && <SummaryContainer className={'small warning'}>
+    {bearMode && <Box className={'small warning'}>
       <div>You have gone wild!</div>
       <div>You can&apos;t speak English</div>
-    </SummaryContainer>}
-    {thiefMode && <SummaryContainer className={'small warning'}>
+    </Box>}
+    {thiefMode && <Box className={'small warning'}>
       <div>You&apos;re criminally mad!</div>
       <div>Betray the party!</div>
       <div><SubtleText>(In a small way)</SubtleText></div>
-    </SummaryContainer>}
-    <SummaryContainer className={'small'}>
+    </Box>}
+    <Box className={'small'}>
       <div>As a {bear?.species},</div>
       <div>you can use <HighlightText>{bear?.ability}</HighlightText></div>
-    </SummaryContainer>
-    <SummaryContainer className={'small'}>
+    </Box>
+    <Box className={'small'}>
       <div>As the {bear?.role},</div>
       <div>You&apos;re skilled at <HighlightText>{bear?.role_advantage}</HighlightText></div>
-    </SummaryContainer>
+    </Box>
   </>
 }
 
@@ -94,6 +96,39 @@ const NotesBox = ({ bear }) => {
       onChange={e => setNotes(e.target.value)}>
     </NotesArea>
   </NotesContainer>
+}
+
+const PartyBox = ({ bear }) => {
+  const [title] = useState(['Party', 'Gang', 'Sleuth', 'Team'][Math.random()*4|0])
+  const [bears, setBears] = useState([])
+
+  // Get players
+  useEffect(() => {
+    if (bear?.gamecode) {
+      fetchAllBears({ gamecode: bear.gamecode })
+        .then(bears => setBears(bears))
+    }
+  }, [bear?.gamecode])
+
+  return <PartyBoxContainer className={'medium'}>
+    <h3> The {title} </h3>
+    <PartyTable>
+      <thead>
+        <tr>
+          <td>Player</td>
+          <td>Role</td>
+          <td>Name</td>
+        </tr>
+      </thead>
+      <tbody>
+        {bears.map(bear => <tr key={bear.bear_name}>
+          <td>{bear.player_name}</td>
+          <td>The {bear.role}</td>
+          <td>&quot;{bear.bear_name}&quot;</td>
+        </tr>)}
+      </tbody>
+    </PartyTable>
+  </PartyBoxContainer>
 }
 
 export default Main

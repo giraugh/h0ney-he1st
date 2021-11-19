@@ -15,6 +15,11 @@ export const fetchBear = async ({ gamecode, bear_name }) => {
   return data
 }
 
+export const fetchAllBears = async ({ gamecode }) => {
+  const { data } = await api.get('/players', { params: { gamecode }})
+  return data
+}
+
 export const removeAllBears = async ({ gamecode }) => {
   const { data } = await api.get('/resetGame', { params: { gamecode } }).data
   return data

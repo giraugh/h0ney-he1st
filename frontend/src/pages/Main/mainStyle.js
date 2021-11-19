@@ -23,13 +23,13 @@ export const HighlightText = styled.span`
     color: ${p => p.theme.primaryLight};
 `
 
-export const SummaryContainer = styled.div`
+export const Box = styled.div`
     display: flex;
     gap: .1em;
     height: 6.5em;
     background: ${p => p.theme.backgroundSecondary};
     font-family: ${p => p.theme.featureFont};
-    font-size: 2.5rem;
+    font-size: 2.3rem;
     flex-direction: column;
     align-content: center;
     justify-content: center;
@@ -40,6 +40,9 @@ export const SummaryContainer = styled.div`
         font-size: 1.3rem;
         height: max-content;
         padding: 1.5em 0em;
+    }
+
+    &.medium {
     }
 
     &.subtle {
@@ -163,5 +166,44 @@ export const Button = styled.button`
   &:active {
     background: white;
     color: ${p => p.theme.backgroundSecondaryLight};
+  }
+`
+
+export const PartyBoxContainer = styled(Box)`
+    font-size: 2rem;
+    text-align: left;
+    align-items: flex-start;
+    padding-left: 1em;
+    height: max-content;
+    padding: 1em;
+
+    h3 {
+      margin-bottom: .2em;
+      margin-top: 0;
+    }
+`
+
+
+export const PartyTable = styled.table`
+  border-collapse: collapse;
+  font-size: 1.5rem;
+  margin-left: 1em;
+  margin-top: .5em;
+
+  thead {
+    font-weight: bold;
+    border-bottom: 3px solid ${p => p.theme.backgroundSecondaryLight};
+  }
+
+  td {
+    padding: .3em;
+  }
+
+  tbody {
+    tr:first-child {
+      td {
+        padding-top: .8em;
+      }
+    }
   }
 `
