@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useCookieState } from 'use-cookie-state' 
 import { useNavigate } from 'react-router-dom'
 
-import { PartyTable, PartyBoxContainer, Button, Container, SkillBox, SkillSliderContainer, Box, SubtleText, HighlightText, NotesArea, NotesContainer } from './mainStyle'
+import { BigText, PartyTable, PartyBoxContainer, Button, Container, SkillBox, SkillSliderContainer, Box, SubtleText, HighlightText, NotesArea, NotesContainer } from './mainStyle'
 import { useCurrentBear } from 'hooks'
 import { fetchAllBears } from 'services/bear'
 
@@ -34,10 +34,10 @@ const Main = () => {
 
 const SummaryBox = ({ bear }) => {
   return <Box>
-    <div>The <HighlightText>{bear?.role}</HighlightText></div>
+    <div className='split-on-small'><span>The {bear?.descriptor}</span> <span>{bear?.species}</span></div>
+    <div><BigText>{`"${bear?.bear_name}"`}</BigText></div>
     <div><SubtleText>is</SubtleText></div>
-    <div>{`"${bear?.bear_name}"`}</div>
-    <div>{bear?.descriptor} {bear?.species}</div>
+    <div>The <HighlightText>{bear?.role}</HighlightText></div>
   </Box>
 }
 

@@ -23,6 +23,11 @@ export const HighlightText = styled.span`
     color: ${p => p.theme.primaryLight};
 `
 
+export const BigText = styled.span`
+  margin-top: 1em;
+  font-size: 3rem;
+`
+
 export const Box = styled.div`
     display: flex;
     gap: .1em;
@@ -34,6 +39,16 @@ export const Box = styled.div`
     align-content: center;
     justify-content: center;
     align-items: center;
+
+    .split-on-small {
+      font-style: italic;
+
+      @media screen and (max-width: 600px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    }
 
     &.small {
         background: radial-gradient(${p => p.theme.backgroundSecondaryLight} 1%, ${p => p.theme.backgroundSecondary} 80%);
@@ -186,8 +201,7 @@ export const PartyBoxContainer = styled(Box)`
 
 export const PartyTable = styled.table`
   border-collapse: collapse;
-  font-size: 1.5rem;
-  margin-left: 1em;
+  font-size: 1.3rem;
   margin-top: .5em;
 
   thead {
