@@ -33,7 +33,7 @@ def expect_params(*param_names):
         missing_params = [name for name, val in zip(param_names, params) if not val]
         return { 'err': 3, 'error': f'Missing params: {", ".join(missing_params)}' }, None
     else:
-        return None, *params
+        return (None, *params,)
         
 
 """
