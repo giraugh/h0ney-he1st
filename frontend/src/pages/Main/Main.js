@@ -87,7 +87,7 @@ const SkillSlider = ({ value, setValue }) => {
 }
 
 const NotesBox = ({ bear }) => {
-  const [notes, setNotes] = useCookieState(`honey-heist-notes-${bear?.bear_name}-${bear?.gamecode}`, '')
+  const [notes, setNotes] = useCookieState(`honey-heist-notes-${bear?.bear_name.replace(/\s/g, '')}-${bear?.gamecode}`, '')
 
   return <NotesContainer>
     <NotesArea
